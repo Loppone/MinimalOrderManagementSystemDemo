@@ -1,0 +1,25 @@
+services:
+
+  productdb:
+    container_name: productdb
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=MyP455w@rd
+    restart: always
+    ports:
+      - "1433:1433"
+
+  gatewayapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Server=productdb;Database=ProductDb;User Id=sa;Password=MyP455w@rd;TrustServerCertificate=True;integrated security=False;Trusted_Connection=False
+    depends_on:
+      - productdb
+    ports:
+      - "8010:8080"
+      - "8020:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
