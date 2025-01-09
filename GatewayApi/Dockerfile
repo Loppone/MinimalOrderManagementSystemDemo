@@ -2,14 +2,11 @@
 
 # Questa fase viene usata durante l'esecuzione da Visual Studio in modalità rapida (impostazione predefinita per la configurazione di debug)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-#USER root
 USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-# Installare la libreria libgssapi-krb5-2
-#RUN apt-get update && apt-get install -y libgssapi-krb5-2
 
 # Questa fase viene usata per compilare il progetto di servizio
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build

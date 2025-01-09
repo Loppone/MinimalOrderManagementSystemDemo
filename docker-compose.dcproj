@@ -4,7 +4,7 @@
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
     <DockerPublishLocally>False</DockerPublishLocally>
-    <ProjectGuid>a94511e4-b05e-43a7-a2d2-a54ed90c2076</ProjectGuid>
+    <ProjectGuid>9d3e0cbd-fe9e-4d4d-9b47-7c4cbc463ec4</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>gatewayapi</DockerServiceName>

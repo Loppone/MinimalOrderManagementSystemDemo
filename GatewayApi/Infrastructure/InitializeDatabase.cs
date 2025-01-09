@@ -5,7 +5,6 @@
         public static async Task Seed(this WebApplication app)
         {
             using var scope = app.Services.CreateScope();
-
             // Product 
             await SeedProductDatabase(scope);
         }
@@ -13,6 +12,9 @@
         private static async Task SeedProductDatabase(IServiceScope scope)
         {
             var dbContext = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
+            
+            dbContext.Database.EnsureCreated();
+            
             if (!dbContext.Categories.Any())
             {
                 dbContext.Categories.AddRange(

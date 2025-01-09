@@ -4,7 +4,8 @@ services:
     container_name: productdb
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=MyP455w@rd
+      - MSSQL_SA_PASSWORD=MyP455w@rd!
+      - MSSQL_PID=Developer
     restart: always
     ports:
       - "1433:1433"
@@ -12,9 +13,9 @@ services:
   gatewayapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Product=Server=productdb;Database=ProductDb;User Id=sa;Password=MyP455w@rd!;TrustServerCertificate=True;
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
-      - ConnectionStrings__Database=Server=productdb;Database=ProductDb;User Id=sa;Password=MyP455w@rd;TrustServerCertificate=True;integrated security=False;Trusted_Connection=False
     depends_on:
       - productdb
     ports:
