@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks.csproj" />
+    <ProjectReference Include="..\..\..\Building_Blocks\BuildingBlocks\BuildingBlocks.csproj" />
     <ProjectReference Include="..\ProductService\ProductService.csproj" />
   </ItemGroup>
 

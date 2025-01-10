@@ -1,7 +1,6 @@
+using ProductService.Features.CreateProduct;
 
-using GatewayApi.Infrastructure;
-
-internal class Program
+public class Program
 {
     private static async Task Main(string[] args)
     {
@@ -12,14 +11,23 @@ internal class Program
 
         builder.Services.AddDbContext<ProductDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("Product"),
-                opt=>opt.EnableRetryOnFailure())
+                opt => opt.EnableRetryOnFailure())
             .EnableDetailedErrors()
             .EnableSensitiveDataLogging());
 
 
         builder.Services.AddCarter();
         builder.Services.AddMediatR(cfg =>
-            cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
+        {
+            //cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+
+            cfg.RegisterServicesFromAssemblyContaining<CreateProductValidation>();
+
+            cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
+        });
+
+        builder.Services.AddValidatorsFromAssembly(typeof(CreateProductValidation).Assembly);
+
 
         builder.Services.AddScoped<IQueryRepository<Product>, QueryRepository<Product, ProductDbContext>>();
         builder.Services.AddScoped<ICommandRepository<Product>, CommandRepository<Product, ProductDbContext>>();

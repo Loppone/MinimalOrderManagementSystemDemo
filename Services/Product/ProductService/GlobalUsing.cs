@@ -1,4 +1,5 @@
-﻿global using MediatR;
+﻿global using Mapster;
+global using MediatR;
 
 global using BuildingBlocks.Exceptions;
 global using BuildingBlocks.Infrastructure;

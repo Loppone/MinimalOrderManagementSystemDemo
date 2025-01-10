@@ -44,5 +44,10 @@ public class CommandRepository<T, TContext> : ICommandRepository<T>
 
         return entity;
     }
+
+    public async Task SaveAsync()
+    {
+        await _context.SaveChangesAsync();
+    }
 }
 

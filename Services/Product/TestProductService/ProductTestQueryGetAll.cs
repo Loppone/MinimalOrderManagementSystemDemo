@@ -1,16 +1,6 @@
-using BuildingBlocks.Infrastructure;
-using Moq;
-using ProductService.Features.GetProducts;
-using ProductService.Models;
-using FluentAssertions;
-using ProductService.Features.GetProductById;
-using BuildingBlocks.Exceptions;
-using BuildingBlocks.Models;
-using System.Linq.Expressions;
-
 namespace TestProductService
 {
-    public class ProductTest_GetAll
+    public class ProductTestQueryGetAll
     {
         [Fact]
         public async Task Handle_GetAllShouldBeCalledJustOnce()
@@ -99,42 +89,6 @@ namespace TestProductService
             var result = await sut.Handle(new GetProductsQuery(), CancellationToken.None);
 
             result.Products.Should().BeEmpty();
-        }
-    }
-
-    public class ProductTest_GetById
-    {
-        [Fact]
-        public async Task Handle_ReturnProduct_WhenNoDataFound()
-        {
-            var mockRepository = new Mock<IQueryRepository<Product>>();
-
-            mockRepository
-                .Setup(x => x.GetByIdAsync(1, It.IsAny<Expression<Func<Product, object>>[]>()))
-                .ReturnsAsync((Product)null!);
-
-            var sut = new GetProductByIdQueryHandler(mockRepository.Object);
-
-            Func<Task> act = async () => await sut.Handle(new GetProductByIdQuery(1), CancellationToken.None);
-
-            await act.Should().ThrowAsync<NotFoundException>();
-        }
-
-        [Fact]
-        public async Task Handle_ReturnProduct_WhenDataFound()
-        {
-            var mockRepository = new Mock<IQueryRepository<Product>>();
-            var expectedProduct = new Product { Id = 1, Name = "Product A", Price = 100, Category = new Category() };
-
-            mockRepository
-                .Setup(x => x.GetByIdAsync(1, It.IsAny<Expression<Func<Product, object>>[]>()))
-                .ReturnsAsync(expectedProduct);
-
-            var sut = new GetProductByIdQueryHandler(mockRepository.Object);
-
-            var result = await sut.Handle(new GetProductByIdQuery(1), CancellationToken.None);
-
-            result.Product.Should().BeEquivalentTo(expectedProduct);
         }
     }
 }

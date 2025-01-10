@@ -12,9 +12,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="C:\Users\shaol\.nuget\packages\microsoft.testplatform.testhost\17.12.0\build\netcoreapp3.1\x64\testhost.dll" />
+    <Content Remove="C:\Users\shaol\.nuget\packages\microsoft.testplatform.testhost\17.12.0\build\netcoreapp3.1\x64\testhost.exe" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\shaol\.nuget\packages\xunit.runner.visualstudio\3.0.0\build\net6.0\xunit.abstractions.dll" />
+    <None Remove="C:\Users\shaol\.nuget\packages\xunit.runner.visualstudio\3.0.0\build\net6.0\xunit.runner.visualstudio.testadapter.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FluentAssertions" Version="7.0.0" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="Mapster" Version="7.4.0" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.11" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />

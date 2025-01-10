@@ -1,11 +1,4 @@
-﻿using BuildingBlocks.Infrastructure;
-using FluentAssertions;
-using Moq;
-using ProductService.Infrastructure;
-using ProductService.Models;
-using TestProduct;
-
-namespace TestProductService;
+﻿namespace TestProductService;
 
 public class RepositoryTest
 {
