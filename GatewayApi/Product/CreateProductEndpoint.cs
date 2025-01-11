@@ -16,6 +16,14 @@ namespace GatewayApi.ProductEndpoints
                         request.Description,
                         request.Price));
 
+                if (result.IsFailed)
+                {
+                    return Results.Problem(
+                        detail: string.Join("; ", result.Errors.Select(e => e.Message)),
+                        statusCode: StatusCodes.Status400BadRequest
+                    );
+                }
+
                 return Results.Ok(result.Id);
             })
             .WithName("Create Product")

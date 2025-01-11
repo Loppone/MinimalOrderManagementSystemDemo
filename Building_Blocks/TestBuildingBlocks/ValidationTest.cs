@@ -25,10 +25,13 @@ namespace TestBuildingBlocks
             var validators = new List<IValidator<MockRequestClass>> { mockValidator.Object };
             var behavior = new ValidationBehavior<MockRequestClass, MockResponseClass>(validators);
 
-            await Assert.ThrowsAsync<ValidationException>(async () =>
-                         await behavior.Handle(mockRequest, mockNext.Object, CancellationToken.None));
+            var result = await behavior.Handle(mockRequest, mockNext.Object, CancellationToken.None);
 
-            mockNext.Verify(next => next(), Times.Never);
+            // Assert
+            Assert.False(result.IsSuccess);
+            Assert.Single(result.Errors);
+            mockNext.Verify(next => next(), Times.Never); 
+
         }
 
         [Fact]

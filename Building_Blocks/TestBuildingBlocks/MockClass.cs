@@ -6,7 +6,7 @@ namespace TestBuildingBlocks
     {
     }
 
-    public class MockResponseClass
+    public class MockResponseClass : FluentResults.Result
     {
     }
 }

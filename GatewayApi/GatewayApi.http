@@ -1,6 +1,6 @@
-@GatewayApi_HostAddress = http://localhost:5031
+@GatewayApi_HostAddress = http://localhost:8010
 
-GET {{GatewayApi_HostAddress}}/weatherforecast/
+GET {{GatewayApi_HostAddress}}/products/
 Accept: application/json
 
 ###

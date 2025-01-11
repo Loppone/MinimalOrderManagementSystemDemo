@@ -1,10 +1,5 @@
 ﻿namespace ProductService.Features.CreateProduct;
 
-public record CreateProductCommandRequest(int CategoryId, string Name, string Description, decimal Price)
-    : IRequest<CreateProductCommandResult>;
-
-public record CreateProductCommandResult(int Id);
-
 internal class CreateProductCommandHandler(ICommandRepository<Product> _repository)
     : IRequestHandler<CreateProductCommandRequest, CreateProductCommandResult>
 {
