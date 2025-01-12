@@ -1,9 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace TestProduct;
+﻿namespace TestProduct;
 
 public class InMemoryDb<T> where T : DbContext
-    //: IAsyncLifetime
 {
     public T DbContext { get; set; }
 
@@ -15,17 +12,4 @@ public class InMemoryDb<T> where T : DbContext
 
         DbContext = dbContextFactory(options);
     }
-
-    //public Task InitializeAsync()
-    //{
-    //    //DbContext.Database.EnsureCreated();
-    //    return Task.CompletedTask;
-    //}
-
-    //public Task DisposeAsync()
-    //{
-    //    DbContext.Database.EnsureDeleted();
-    //    DbContext.Dispose();
-    //    return Task.CompletedTask;
-    //}
 }

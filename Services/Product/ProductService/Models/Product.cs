@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Abstractions;
-
-namespace ProductService.Models;
+﻿namespace ProductService.Models;
 
 public class Product : IEntity
 {

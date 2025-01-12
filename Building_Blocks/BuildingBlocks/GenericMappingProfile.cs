@@ -1,13 +1,10 @@
-﻿using AutoMapper;
+﻿namespace GenericService;
 
-namespace GenericService
+public class GenericMappingProfile<TMODEL, TDATA> : Profile
 {
-    public class GenericMappingProfile<TMODEL, TDATA> : Profile
+    public GenericMappingProfile()
     {
-        public GenericMappingProfile()
-        {
-            CreateMap<TMODEL, TDATA>();
-            CreateMap<TDATA, TMODEL>();
-        }
+        CreateMap<TMODEL, TDATA>();
+        CreateMap<TDATA, TMODEL>();
     }
 }

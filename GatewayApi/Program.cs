@@ -1,6 +1,3 @@
-using GatewayApi.Handlers;
-using ProductService.Features.CreateProduct;
-
 public class Program
 {
     private static async Task Main(string[] args)

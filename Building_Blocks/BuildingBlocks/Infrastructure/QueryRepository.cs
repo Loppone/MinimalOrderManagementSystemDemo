@@ -1,8 +1,4 @@
-﻿using System.Linq.Expressions;
-using BuildingBlocks.Models;
-using Microsoft.EntityFrameworkCore;
-
-namespace BuildingBlocks.Infrastructure;
+﻿namespace BuildingBlocks.Infrastructure;
 
 public class QueryRepository<T, TContext> : IQueryRepository<T>
     where T : class

@@ -1,6 +1,7 @@
 ﻿global using System.Linq.Expressions;
 
 global using FluentAssertions;
+global using FluentResults;
 global using FluentValidation.TestHelper;
 global using Moq;
 

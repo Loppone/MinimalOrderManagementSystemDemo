@@ -1,7 +1,4 @@
-﻿using System.Linq.Expressions;
-using BuildingBlocks.Models;
-
-namespace BuildingBlocks.Infrastructure;
+﻿namespace BuildingBlocks.Infrastructure;
 
 public interface IQueryRepository<T> where T : class
 {

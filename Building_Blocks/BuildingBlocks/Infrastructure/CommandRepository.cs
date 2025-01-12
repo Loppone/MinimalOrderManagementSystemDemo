@@ -1,7 +1,4 @@
-﻿using BuildingBlocks.Abstractions;
-using Microsoft.EntityFrameworkCore;
-
-namespace BuildingBlocks.Infrastructure;
+﻿namespace BuildingBlocks.Infrastructure;
 
 public class CommandRepository<T, TContext> : ICommandRepository<T>
     where T : class, IEntity

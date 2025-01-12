@@ -1,7 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using BuildingBlocks.Abstractions;
-
-namespace ProductService.Models;
+﻿namespace ProductService.Models;
 
 public class Category : IEntity
 {

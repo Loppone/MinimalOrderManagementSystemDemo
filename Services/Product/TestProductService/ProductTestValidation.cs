@@ -1,66 +1,65 @@
-﻿namespace TestProductService
+﻿namespace TestProductService;
+
+public class ProductTestValidation
 {
-    public class ProductTestValidation
+    private readonly CreateProductValidation _sut;
+
+    public ProductTestValidation()
     {
-        private readonly CreateProductValidation _sut;
+        _sut = new CreateProductValidation();
+    }
 
-        public ProductTestValidation()
-        {
-            _sut = new CreateProductValidation();
-        }
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-1)]
+    public void ShouldHaveError_WhenCategoryIdIsNotValid(int categoryId)
+    {
+        var product = new CreateProductCommandRequest(categoryId, "Product 1", "Description", 100);
 
-        [Theory]
-        [InlineData(0)]
-        [InlineData(-1)]
-        public void ShouldHaveError_WhenCategoryIdIsNotValid(int categoryId)
-        {
-            var product = new CreateProductCommandRequest(categoryId, "Product 1", "Description", 100);
+        var result = _sut.TestValidate(product);
 
-            var result = _sut.TestValidate(product);
+        result.ShouldHaveValidationErrorFor(x => x.CategoryId);
+    }
 
-            result.ShouldHaveValidationErrorFor(x => x.CategoryId);
-        }
+    [Fact]
+    public void ShouldHaveError_WhenNameIsEmpty()
+    {
+        var product = new CreateProductCommandRequest(1, "", "Description", 100);
 
-        [Fact]
-        public void ShouldHaveError_WhenNameIsEmpty()
-        {
-            var product = new CreateProductCommandRequest(1, "", "Description", 100);
+        var result = _sut.TestValidate(product);
 
-            var result = _sut.TestValidate(product);
+        result.ShouldHaveValidationErrorFor(x => x.Name);
+    }
 
-            result.ShouldHaveValidationErrorFor(x => x.Name);
-        }
+    [Fact]
+    public void ShouldHaveError_WhenDescriptionIsTooShort()
+    {
+        var product = new CreateProductCommandRequest(1, "Product 1", "Desc", 100);
 
-        [Fact]
-        public void ShouldHaveError_WhenDescriptionIsTooShort()
-        {
-            var product = new CreateProductCommandRequest(1, "Product 1", "Desc", 100);
+        var result = _sut.TestValidate(product);
 
-            var result = _sut.TestValidate(product);
+        result.ShouldHaveValidationErrorFor(x => x.Description);
+    }
 
-            result.ShouldHaveValidationErrorFor(x => x.Description);
-        }
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-1)]
+    public void ShouldHaveError_WhenPriceIsNotvalid(decimal price)
+    {
+        var product = new CreateProductCommandRequest(1, "Product 1", "Description", price);
 
-        [Theory]
-        [InlineData(0)]
-        [InlineData(-1)]
-        public void ShouldHaveError_WhenPriceIsNotvalid(decimal price)
-        {
-            var product = new CreateProductCommandRequest(1, "Product 1", "Description", price);
+        var result = _sut.TestValidate(product);
 
-            var result = _sut.TestValidate(product);
+        result.ShouldHaveValidationErrorFor(x => x.Price);
+    }
 
-            result.ShouldHaveValidationErrorFor(x => x.Price);
-        }
+    [Fact]
+    public void ShouldNotHaveError_WhenModelIsValid()
+    {
+        var product = new CreateProductCommandRequest(1, "Product 1", "Description", 100);
 
-        [Fact]
-        public void ShouldNotHaveError_WhenModelIsValid()
-        {
-            var product = new CreateProductCommandRequest(1, "Product 1", "Description", 100);
+        var result = _sut.TestValidate(product);
 
-            var result = _sut.TestValidate(product);
-
-            result.ShouldNotHaveAnyValidationErrors();
-        }
+        result.ShouldNotHaveAnyValidationErrors();
     }
 }
