@@ -1,4 +1,6 @@
-﻿namespace GatewayApi.ProductEndpoints;
+﻿using BuildingBlocks.Common.Errors;
+
+namespace GatewayApi.ProductEndpoints;
 
 public class CreateProductsEndpoint : ICarterModule
 {
@@ -15,16 +17,7 @@ public class CreateProductsEndpoint : ICarterModule
 
             if (result.IsFailed)
             {
-                return Results.Problem(
-                    detail: "Validation Errors",
-                    statusCode: StatusCodes.Status400BadRequest,
-                    extensions: new Dictionary<string, object?>
-                    {
-                        { "errors", result.Errors
-                            .Select((e, index) => new KeyValuePair<string, object?>($"{index + 1}", e.Message))
-                            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value) }
-                    }
-                );
+                return ErrorHandlingHelper.HandleValidationErrors(result.Errors);
             }
 
             return Results.Ok(result.Value.Id);

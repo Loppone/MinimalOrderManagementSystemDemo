@@ -31,6 +31,7 @@ public class Program
         builder.Services.AddScoped<IQueryRepository<Product>, QueryRepository<Product, ProductDbContext>>();
         builder.Services.AddScoped<ICommandRepository<Product>, CommandRepository<Product, ProductDbContext>>();
         builder.Services.AddScoped<IQueryRepository<Category>, QueryRepository<Category, ProductDbContext>>();
+        builder.Services.AddScoped<ICommandRepository<Category>, CommandRepository<Category, ProductDbContext>>();
 
         var app = builder.Build();
 

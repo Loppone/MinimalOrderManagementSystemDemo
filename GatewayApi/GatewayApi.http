@@ -4,3 +4,7 @@ GET {{GatewayApi_HostAddress}}/products/
 Accept: application/json
 
 ###
+GET {{GatewayApi_HostAddress}}/product/1
+Accept: application/json
+
+###

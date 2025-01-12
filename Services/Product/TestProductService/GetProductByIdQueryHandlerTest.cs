@@ -1,6 +1,8 @@
-﻿namespace TestProductService;
+﻿using FluentResults;
 
-public class GetProductByIdQueryHandlerGetByIdTest
+namespace TestProductService;
+
+public class GetProductByIdQueryHandlerTest
 {
     [Fact]
     public async Task Handle_ReturnProduct_WhenNoDataFound()
@@ -13,9 +15,10 @@ public class GetProductByIdQueryHandlerGetByIdTest
 
         var sut = new GetProductByIdQueryHandler(mockRepository.Object);
 
-        Func<Task> act = async () => await sut.Handle(new GetProductByIdQuery(1), CancellationToken.None);
+        var result = await sut.Handle(new GetProductByIdQueryRequest(1), CancellationToken.None);
 
-        await act.Should().ThrowAsync<NotFoundException>();
+        result.Should().BeOfType<Result<GetProductByIdQueryResult>>();
+        result.IsSuccess.Should().BeFalse();
     }
 
     [Fact]
@@ -30,8 +33,8 @@ public class GetProductByIdQueryHandlerGetByIdTest
 
         var sut = new GetProductByIdQueryHandler(mockRepository.Object);
 
-        var result = await sut.Handle(new GetProductByIdQuery(1), CancellationToken.None);
+        var result = await sut.Handle(new GetProductByIdQueryRequest(1), CancellationToken.None);
 
-        result.Product.Should().BeEquivalentTo(expectedProduct);
+        result.Value.Product.Should().BeEquivalentTo(expectedProduct);
     }
 }

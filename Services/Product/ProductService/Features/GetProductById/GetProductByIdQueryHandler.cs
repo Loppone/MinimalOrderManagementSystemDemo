@@ -2,18 +2,15 @@
 
 namespace ProductService.Features.GetProductById;
 
-public record GetProductByIdQuery(int Id) : IRequest<GetProductByIdResult>;
-public record GetProductByIdResult(Product? Product);
-
-internal class GetProductByIdQueryHandler(IQueryRepository<Product> _repository) :
-    IRequestHandler<GetProductByIdQuery, GetProductByIdResult>
+internal sealed class GetProductByIdQueryHandler(IQueryRepository<Product> _repository) 
+    : IRequestHandler<GetProductByIdQueryRequest, Result<GetProductByIdQueryResult>>
 {
-    public async Task<GetProductByIdResult> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
+    public async Task<Result<GetProductByIdQueryResult>> Handle(GetProductByIdQueryRequest request, CancellationToken cancellationToken)
     {
         var product = await _repository.GetByIdAsync(request.Id, x => x.Category!);
 
         return product is null ?
-            throw new NotFoundException($"Product with id {request.Id} not found.") :
-            new GetProductByIdResult(product);
+            Result.Fail(new DetailError($"Product with id {request.Id} not found.")) :
+            new GetProductByIdQueryResult(product);
     }
 }

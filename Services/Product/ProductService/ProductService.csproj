@@ -23,4 +23,8 @@
     <ProjectReference Include="..\..\..\Building_Blocks\BuildingBlocks\BuildingBlocks.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\GetCategories\" />
+  </ItemGroup>
+
 </Project>

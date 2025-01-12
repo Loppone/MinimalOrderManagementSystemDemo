@@ -10,7 +10,9 @@ global using BuildingBlocks.Behaviors;
 global using BuildingBlocks.Exceptions;
 global using BuildingBlocks.Infrastructure;
 
+global using ProductService.Features.CreateCategory;
 global using ProductService.Features.CreateProduct;
+global using ProductService.Features.GetProductById;
 global using ProductService.Features.GetProducts;
 global using ProductService.Infrastructure;
 global using ProductService.Models;

@@ -1,6 +1,6 @@
 ﻿namespace ProductService.Features.CreateProduct;
 
-internal class CreateProductCommandHandler(
+internal sealed class CreateProductCommandHandler(
     ICommandRepository<Product> _repository,
     IQueryRepository<Category> _repositoryCategory
     )
@@ -12,7 +12,7 @@ internal class CreateProductCommandHandler(
 
         if (cat is null)
         {
-            return Result.Fail(new CustomError("Category not found"));
+            return Result.Fail(new DetailError("Category not found"));
         }
 
         var product = request.Adapt<Product>();
@@ -21,22 +21,11 @@ internal class CreateProductCommandHandler(
 
         if (product.Id <= 0)
         {
-            return Result.Fail(new CustomError("Insert Product error"));
+            return Result.Fail(new DetailError("Insert Product error"));
         }
 
         await _repository.SaveAsync();
 
         return new CreateProductCommandResult(product.Id);
     }
-}
-
-public class CustomError : Error
-{
-
-    public CustomError(string message)
-        : base(message)
-    {
-    }
-
-   // public static implicit operator
 }
