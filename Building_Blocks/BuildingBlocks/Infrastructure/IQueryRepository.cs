@@ -7,6 +7,8 @@ public interface IQueryRepository<T> where T : class
          int pageSize = 10,
          params Expression<Func<T, object>>[] includes);
 
+    public Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includes);
+
     public Task<T?> GetByIdAsync(
          int id,
          params Expression<Func<T, object>>[] includes);

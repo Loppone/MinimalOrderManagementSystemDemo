@@ -13,7 +13,18 @@ public class QueryRepository<T, TContext> : IQueryRepository<T>
         _dbSet = _context.Set<T>();
     }
 
-    // Ottieni tutte le entità con inclusioni e paginazione
+    public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includes)
+    {
+        IQueryable<T> query = _dbSet;
+        
+        foreach (var include in includes)
+        {
+            query = query.Include(include);
+        }
+
+        return await query.ToListAsync();
+    }
+
     public async Task<PaginatedResult<T>> GetAllAsync(
         int pageNumber = 1,
         int pageSize = 10,

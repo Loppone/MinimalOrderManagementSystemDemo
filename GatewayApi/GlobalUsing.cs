@@ -12,6 +12,7 @@ global using BuildingBlocks.Infrastructure;
 
 global using ProductService.Features.CreateCategory;
 global using ProductService.Features.CreateProduct;
+global using ProductService.Features.GetCategories;
 global using ProductService.Features.GetProductById;
 global using ProductService.Features.GetProducts;
 global using ProductService.Infrastructure;

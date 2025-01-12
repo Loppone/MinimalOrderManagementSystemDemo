@@ -3,7 +3,38 @@
 public class RepositoryTest
 {
     [Fact]
-    public async Task GetAll_ThrowException_WhenDatabaseFails()
+    public async Task GetAll_ShouldReturnEmptyList_WhenNoDataFound()
+    {
+        var context = new InMemoryDb<ProductDbContext>(opt => new ProductDbContext(opt));
+        var repository = new QueryRepository<Category, ProductDbContext>(context.DbContext);
+        
+        var result = await repository.GetAllAsync();
+        
+        result.Should().NotBeNull();
+        result.Should().HaveCount(0);
+    }
+
+    [Fact]
+    public async Task GetAll_ShouldReturnListOfCategories_WhenDataFound()
+    {
+        var context = new InMemoryDb<ProductDbContext>(opt => new ProductDbContext(opt));
+        await context.DbContext.Categories.AddRangeAsync(new List<Category>
+        {
+            new() { Id = 1, Name = "Category A" },
+            new() { Id = 2, Name = "Category B" }
+        });
+
+        await context.DbContext.SaveChangesAsync();
+        var sut = new QueryRepository<Category, ProductDbContext>(context.DbContext);
+        
+        var result = await sut.GetAllAsync();
+
+        result.Should().NotBeNull();
+        result.Should().HaveCount(2);
+    }
+
+    [Fact]
+    public async Task GetAllPaginated_ThrowException_WhenDatabaseFails()
     {
         var context = new ProductDbContext();
         var mockContext = new Mock<ProductDbContext>();
@@ -16,7 +47,7 @@ public class RepositoryTest
     }
 
     [Fact]
-    public async Task GetAllAsync_ShouldReturnListOfProducts_WhenDataFound()
+    public async Task GetAllPaginatedAsync_ShouldReturnListOfProducts_WhenDataFound()
     {
         var context = new InMemoryDb<ProductDbContext>(opt => new ProductDbContext(opt));
 
@@ -38,7 +69,7 @@ public class RepositoryTest
     }
 
     [Fact]
-    public async Task GetAllAsync_ShouldReturnEmptyList_WhenNoDataFound()
+    public async Task GetAllPaginatedAsync_ShouldReturnEmptyList_WhenNoDataFound()
     {
         var context = new InMemoryDb<ProductDbContext>(opt => new ProductDbContext(opt)); // Fresh new db!
         var repository = new QueryRepository<Product, ProductDbContext>(context.DbContext);
