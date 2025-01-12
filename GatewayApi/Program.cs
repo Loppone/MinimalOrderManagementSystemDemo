@@ -1,3 +1,4 @@
+using GatewayApi.Handlers;
 using ProductService.Features.CreateProduct;
 
 public class Program
@@ -9,28 +10,30 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        // Database
         builder.Services.AddDbContext<ProductDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("Product"),
                 opt => opt.EnableRetryOnFailure())
             .EnableDetailedErrors()
             .EnableSensitiveDataLogging());
 
-
         builder.Services.AddCarter();
         builder.Services.AddMediatR(cfg =>
         {
-            //cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
-
             cfg.RegisterServicesFromAssemblyContaining<CreateProductValidation>();
-
             cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
         });
 
         builder.Services.AddValidatorsFromAssembly(typeof(CreateProductValidation).Assembly);
 
+        // Exception Handling
+        builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+        builder.Services.AddProblemDetails();
 
+        // Dependency Injection
         builder.Services.AddScoped<IQueryRepository<Product>, QueryRepository<Product, ProductDbContext>>();
         builder.Services.AddScoped<ICommandRepository<Product>, CommandRepository<Product, ProductDbContext>>();
+        builder.Services.AddScoped<IQueryRepository<Category>, QueryRepository<Category, ProductDbContext>>();
 
         var app = builder.Build();
 
@@ -42,6 +45,8 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+
+        app.UseExceptionHandler(opt => { });
 
         app.MapCarter();
 

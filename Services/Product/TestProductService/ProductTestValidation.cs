@@ -1,14 +1,12 @@
-﻿using FluentValidation.TestHelper;
-
-namespace TestProductService
+﻿namespace TestProductService
 {
     public class ProductTestValidation
     {
-        private readonly CreateProductValidation _validator;
+        private readonly CreateProductValidation _sut;
 
         public ProductTestValidation()
         {
-            _validator = new CreateProductValidation();
+            _sut = new CreateProductValidation();
         }
 
         [Theory]
@@ -16,9 +14,9 @@ namespace TestProductService
         [InlineData(-1)]
         public void ShouldHaveError_WhenCategoryIdIsNotValid(int categoryId)
         {
-            var model = new CreateProductCommandRequest(categoryId, "Product 1", "Description", 100);
+            var product = new CreateProductCommandRequest(categoryId, "Product 1", "Description", 100);
 
-            var result = _validator.TestValidate(model);
+            var result = _sut.TestValidate(product);
 
             result.ShouldHaveValidationErrorFor(x => x.CategoryId);
         }
@@ -26,9 +24,9 @@ namespace TestProductService
         [Fact]
         public void ShouldHaveError_WhenNameIsEmpty()
         {
-            var model = new CreateProductCommandRequest(1, "", "Description", 100);
+            var product = new CreateProductCommandRequest(1, "", "Description", 100);
 
-            var result = _validator.TestValidate(model);
+            var result = _sut.TestValidate(product);
 
             result.ShouldHaveValidationErrorFor(x => x.Name);
         }
@@ -36,9 +34,9 @@ namespace TestProductService
         [Fact]
         public void ShouldHaveError_WhenDescriptionIsTooShort()
         {
-            var model = new CreateProductCommandRequest(1, "Product 1", "Desc", 100);
+            var product = new CreateProductCommandRequest(1, "Product 1", "Desc", 100);
 
-            var result = _validator.TestValidate(model);
+            var result = _sut.TestValidate(product);
 
             result.ShouldHaveValidationErrorFor(x => x.Description);
         }
@@ -48,9 +46,9 @@ namespace TestProductService
         [InlineData(-1)]
         public void ShouldHaveError_WhenPriceIsNotvalid(decimal price)
         {
-            var model = new CreateProductCommandRequest(1, "Product 1", "Description", price);
+            var product = new CreateProductCommandRequest(1, "Product 1", "Description", price);
 
-            var result = _validator.TestValidate(model);
+            var result = _sut.TestValidate(product);
 
             result.ShouldHaveValidationErrorFor(x => x.Price);
         }
@@ -58,9 +56,9 @@ namespace TestProductService
         [Fact]
         public void ShouldNotHaveError_WhenModelIsValid()
         {
-            var model = new CreateProductCommandRequest(1, "Product 1", "Description", 100);
+            var product = new CreateProductCommandRequest(1, "Product 1", "Description", 100);
 
-            var result = _validator.TestValidate(model);
+            var result = _sut.TestValidate(product);
 
             result.ShouldNotHaveAnyValidationErrors();
         }

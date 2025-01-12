@@ -1,6 +1,6 @@
 namespace TestProductService
 {
-    public class ProductTestQueryGetAll
+    public class GetProductsQueryHandlerGetAllTest
     {
         [Fact]
         public async Task Handle_GetAllShouldBeCalledJustOnce()

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using ProductService.Features.CreateProduct;
 
 namespace GatewayApi.ProductEndpoints
@@ -19,12 +20,18 @@ namespace GatewayApi.ProductEndpoints
                 if (result.IsFailed)
                 {
                     return Results.Problem(
-                        detail: string.Join("; ", result.Errors.Select(e => e.Message)),
-                        statusCode: StatusCodes.Status400BadRequest
+                        detail: "Validation Errors",
+                        statusCode: StatusCodes.Status400BadRequest,
+                        extensions: new Dictionary<string, object?>
+                        {
+                            { "errors", result.Errors
+                                .Select((e, index) => new KeyValuePair<string, object?>($"{index + 1}", e.Message))
+                                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value) }
+                        }
                     );
                 }
 
-                return Results.Ok(result.Id);
+                return Results.Ok(result.Value.Id);
             })
             .WithName("Create Product")
             .Produces<CreateProductCommandResult>(StatusCodes.Status200OK)

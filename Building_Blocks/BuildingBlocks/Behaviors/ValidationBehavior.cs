@@ -7,7 +7,10 @@ namespace BuildingBlocks.Behaviors;
 public class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TRequest>> validators)
     : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
-        where TResponse : Result, new()
+        
+        // Eredito da ResultBase perchè TResponse è generalmente un Result<T>, quindi la constraint su Result è restrittiva
+        // La classe dovrà esporre un costruttore senza parametri
+        where TResponse : ResultBase, new()
 {
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {

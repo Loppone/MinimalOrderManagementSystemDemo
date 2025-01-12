@@ -1,6 +1,6 @@
 ﻿namespace TestProductService
 {
-    public class ProductTestQueryGetById
+    public class GetProductByIdQueryHandlerGetByIdTest
     {
         [Fact]
         public async Task Handle_ReturnProduct_WhenNoDataFound()
