@@ -1,4 +1,6 @@
-﻿namespace GatewayApi.ProductEndpoints;
+﻿using BuildingBlocks.Common.Errors;
+
+namespace GatewayApi.ProductEndpoints;
 
 public class GetProductsEndpoint : ICarterModule
 {
@@ -11,7 +13,12 @@ public class GetProductsEndpoint : ICarterModule
                     pageNumber.HasValue ? pageNumber!.Value : 1,
                     pageSize.HasValue ? pageSize!.Value : 10));
 
-            return Results.Ok(result.Products);
+            if (result.IsFailed)
+            {
+                return ErrorHandlingHelper.HandleValidationErrors(result.Errors);
+            }
+
+            return Results.Ok(result.Value.Products);
         })
         .WithName("GetProducts")
         .Produces<GetProductsQueryResult>(StatusCodes.Status200OK)

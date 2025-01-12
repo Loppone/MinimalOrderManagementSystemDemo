@@ -6,6 +6,8 @@ public class CreateCategoryValidation : AbstractValidator<CreateCategoryCommandR
     {
         RuleFor(x => x.Name)
             .NotEmpty()
-            .MaximumLength(30);
+            .WithMessage("Name must not be empty")
+            .MaximumLength(30)
+            .WithMessage("Name can have a maximum of 30 characters");
     }
 }

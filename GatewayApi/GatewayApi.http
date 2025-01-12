@@ -1,6 +1,6 @@
 @GatewayApi_HostAddress = http://localhost:8010
 
-GET {{GatewayApi_HostAddress}}/products?pageNumber=1&pageSize=1
+GET {{GatewayApi_HostAddress}}/products?pageNumber=-1&pageSize=1
 Accept: application/json
 
 ###
