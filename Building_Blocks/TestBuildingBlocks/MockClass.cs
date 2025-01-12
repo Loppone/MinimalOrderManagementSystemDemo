@@ -1,12 +1,9 @@
-﻿using MediatR;
+﻿namespace TestBuildingBlocks;
 
-namespace TestBuildingBlocks
+public class MockRequestClass : IRequest<Result<MockResponseClass>>
 {
-    public class MockRequestClass : IRequest<MockResponseClass>
-    {
-    }
+}
 
-    public class MockResponseClass : FluentResults.Result
-    {
-    }
+public class MockResponseClass : FluentResults.Result
+{
 }

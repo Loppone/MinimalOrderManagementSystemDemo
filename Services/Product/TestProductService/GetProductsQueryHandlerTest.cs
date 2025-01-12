@@ -14,7 +14,7 @@ public class GetProductsQueryHandlerTest
         var sut = new GetProductsQueryHandler(mockRepository.Object);
 
         //Act
-        await sut.Handle(new GetProductsQuery(), CancellationToken.None);
+        await sut.Handle(new GetProductsQueryRequest(), CancellationToken.None);
 
         //Assert
         mockRepository.Verify(x => x.GetAllAsync(1, 10, x => x.Category!), Times.Once);
@@ -30,7 +30,7 @@ public class GetProductsQueryHandlerTest
 
         var sut = new GetProductsQueryHandler(mockRepository.Object);
 
-        Func<Task> act = async () => await sut.Handle(new GetProductsQuery(), CancellationToken.None);
+        Func<Task> act = async () => await sut.Handle(new GetProductsQueryRequest(), CancellationToken.None);
 
         await act.Should().ThrowAsync<Exception>();
     }
@@ -60,7 +60,7 @@ public class GetProductsQueryHandlerTest
 
         var sut = new GetProductsQueryHandler(mockRepository.Object);
 
-        var result = await sut.Handle(new GetProductsQuery(), CancellationToken.None);
+        var result = await sut.Handle(new GetProductsQueryRequest(), CancellationToken.None);
 
         result.Products.Should().BeEquivalentTo(expectedProducts);
     }
@@ -86,7 +86,7 @@ public class GetProductsQueryHandlerTest
 
         var sut = new GetProductsQueryHandler(mockRepository.Object);
 
-        var result = await sut.Handle(new GetProductsQuery(), CancellationToken.None);
+        var result = await sut.Handle(new GetProductsQueryRequest(), CancellationToken.None);
 
         result.Products.Should().BeEmpty();
     }

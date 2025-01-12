@@ -2,15 +2,12 @@
 
 namespace ProductService.Features.GetProducts;
 
-public record GetProductsQuery(int PageNumber = 1, int PageSize = 10) : IRequest<GetProductsResult>;
-public record GetProductsResult(IEnumerable<Product> Products);
-
 internal class GetProductsQueryHandler(IQueryRepository<Product> repository)
-    : MediatR.IRequestHandler<GetProductsQuery, GetProductsResult>
+    : MediatR.IRequestHandler<GetProductsQueryRequest, GetProductsQueryResult>
 {
-    public async Task<GetProductsResult> Handle(GetProductsQuery request, CancellationToken cancellationToken)
+    public async Task<GetProductsQueryResult> Handle(GetProductsQueryRequest request, CancellationToken cancellationToken)
     {
         var paginatedProducts = await repository.GetAllAsync(request.PageNumber, request.PageSize, x => x.Category!);
-        return new GetProductsResult(paginatedProducts.Items);
+        return new GetProductsQueryResult(paginatedProducts.Items);
     }
 }
