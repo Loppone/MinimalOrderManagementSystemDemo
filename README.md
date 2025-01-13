@@ -1,2 +1,5 @@
 # MinimalOrderManagementSystemDemo
-Gestione minimale di ordini con servizi che non espongono api e servizio orchestratore per la gestione crud
+Gestione minimale di ordini con struttura a microserviziservizi;
+Presente un gateway con funzione di reverse proxy;
+testabile in Http/Https/Docker/Aspire (prossimamente)
+Frontend Blazor (prossimamente)
