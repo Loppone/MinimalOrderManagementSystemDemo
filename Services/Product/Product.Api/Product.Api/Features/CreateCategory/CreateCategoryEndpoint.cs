@@ -1,4 +1,6 @@
-﻿namespace ProductService.Api.EndpointsProductEndpoints;
+﻿using ProductService.Api.Application.Handlers;
+
+namespace ProductService.Api.EndpointsProductEndpoints;
 
 public class CreateCategoryEndpoint : ICarterModule
 {

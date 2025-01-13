@@ -1,10 +1,10 @@
 ﻿namespace TestProductService;
 
-public class ProductTestValidation
+public class CreateProductValidationTet
 {
     private readonly CreateProductValidation _sut;
 
-    public ProductTestValidation()
+    public CreateProductValidationTet()
     {
         _sut = new CreateProductValidation();
     }
@@ -12,7 +12,7 @@ public class ProductTestValidation
     [Theory]
     [InlineData(0)]
     [InlineData(-1)]
-    public void ShouldHaveError_WhenCategoryIdIsNotValid(int categoryId)
+    public void CreateProductValidation_ShouldHaveError_WhenCategoryIdIsNotValid(int categoryId)
     {
         var product = new CreateProductCommandRequest(categoryId, "Product 1", "Description", 100);
 
@@ -22,7 +22,7 @@ public class ProductTestValidation
     }
 
     [Fact]
-    public void ShouldHaveError_WhenNameIsEmpty()
+    public void CreateProductValidation_ShouldHaveError_WhenNameIsEmpty()
     {
         var product = new CreateProductCommandRequest(1, "", "Description", 100);
 
@@ -32,7 +32,7 @@ public class ProductTestValidation
     }
 
     [Fact]
-    public void ShouldHaveError_WhenDescriptionIsTooShort()
+    public void CreateProductValidation_ShouldHaveError_WhenDescriptionIsTooShort()
     {
         var product = new CreateProductCommandRequest(1, "Product 1", "Desc", 100);
 
@@ -44,7 +44,7 @@ public class ProductTestValidation
     [Theory]
     [InlineData(0)]
     [InlineData(-1)]
-    public void ShouldHaveError_WhenPriceIsNotvalid(decimal price)
+    public void CreateProductValidation_ShouldHaveError_WhenPriceIsNotvalid(decimal price)
     {
         var product = new CreateProductCommandRequest(1, "Product 1", "Description", price);
 
@@ -54,7 +54,7 @@ public class ProductTestValidation
     }
 
     [Fact]
-    public void ShouldNotHaveError_WhenModelIsValid()
+    public void CreateProductValidation_ShouldNotHaveError_WhenModelIsValid()
     {
         var product = new CreateProductCommandRequest(1, "Product 1", "Description", 100);
 

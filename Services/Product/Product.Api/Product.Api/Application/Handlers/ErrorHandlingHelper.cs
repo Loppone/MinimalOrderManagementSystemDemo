@@ -1,4 +1,4 @@
-﻿namespace BuildingBlocks.Helpers;
+﻿namespace ProductService.Api.Application.Handlers;
 
 public static class ErrorHandlingHelper
 {

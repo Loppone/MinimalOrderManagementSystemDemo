@@ -1,4 +1,4 @@
-﻿namespace ProductService.Api.Handlers;
+﻿namespace ProductService.Api.Application.Handlers;
 
 /// <summary>
 /// Gestisce le eccezioni globali

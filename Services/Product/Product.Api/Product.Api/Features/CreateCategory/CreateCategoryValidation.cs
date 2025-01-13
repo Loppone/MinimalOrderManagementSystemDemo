@@ -1,6 +1,7 @@
 ﻿namespace ProductService.Api.Features.CreateCategory;
 
-public class CreateCategoryValidation : AbstractValidator<CreateCategoryCommandRequest>
+public class CreateCategoryValidation 
+    : AbstractValidator<CreateCategoryCommandRequest>
 {
     public CreateCategoryValidation()
     {

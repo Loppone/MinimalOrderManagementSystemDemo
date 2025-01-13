@@ -1,8 +1,8 @@
 # Docker Http
-@Product.Api_HostAddress = http://localhost:8010
+#@Product.Api_HostAddress = http://localhost:8010
 
 # Localhost Http
-# @Product.Api_HostAddress = http://localhost:5132
+ @Product.Api_HostAddress = http://localhost:5132
 
 # Localhost Https
 # @Product.Api_HostAddress = https://localhost:7060
@@ -12,10 +12,10 @@ POST {{Product.Api_HostAddress}}/product
 Accept: application/json
 Content-Type: application/json
 {
-  "name": "Test abc",
-  "description": "descrizione 123",
-  "price": 10,
-  "categoryId": 100
+  "name": "Test abc11",
+  "description": "descrizione 123dd",
+  "price": 0,
+  "categoryId": 2000
 }
 ###
 

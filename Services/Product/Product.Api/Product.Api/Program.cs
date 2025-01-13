@@ -1,3 +1,5 @@
+using ProductService.Api.Application.Handlers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();

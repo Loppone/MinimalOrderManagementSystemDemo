@@ -21,7 +21,7 @@ public class GetProductsQueryHandlerTest
     }
 
     [Fact]
-    public async Task Handle_ReturnException_WhenDatabaseFails()
+    public async Task Handle_ShouldReturnException_WhenDatabaseFails()
     {
         var mockRepository = new Mock<IQueryRepository<Product>>();
 
@@ -36,7 +36,7 @@ public class GetProductsQueryHandlerTest
     }
 
     [Fact]
-    public async Task Handle_ReturnProducts_WhenDataFound()
+    public async Task Handle_ShouldReturnProducts_WhenDataFound()
     {
         var mockRepository = new Mock<IQueryRepository<Product>>();
 
@@ -66,7 +66,7 @@ public class GetProductsQueryHandlerTest
     }
 
     [Fact]
-    public async Task Handle_ReturnEmptyList_WhenNoDataFound()
+    public async Task Handle_ShouldReturnEmptyList_WhenNoDataFound()
     {
         var mockRepository = new Mock<IQueryRepository<Product>>();
 
