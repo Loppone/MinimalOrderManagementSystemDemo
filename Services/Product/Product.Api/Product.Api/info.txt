@@ -1,0 +1,8 @@
+﻿// Migrazione inizliale
+dotnet ef migrations add InitialMigration --project C:\Sviluppo\Demo\MinimalOrderManagementSystemDemo\Services\Product\ProductService --startup-project C:\Sviluppo\Demo\MinimalOrderManagementSystemDemo\GatewayApi
+
+// Rimuovere le migrazioni
+dotnet ef migrations remove  --project C:\Sviluppo\Demo\MinimalOrderManagementSystemDemo\Services\Product\ProductService --startup-project C:\Sviluppo\Demo\MinimalOrderManagementSystemDemo\GatewayApi
+
+// Update migrazioni
+dotnet ef database update --project C:\Sviluppo\Demo\MinimalOrderManagementSystemDemo\Services\Product\ProductService --startup-project C:\Sviluppo\Demo\MinimalOrderManagementSystemDemo\GatewayApi

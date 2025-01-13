@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Building_Blocks\BuildingBlocks\BuildingBlocks.csproj" />
-    <ProjectReference Include="..\ProductService\ProductService.csproj" />
+    <ProjectReference Include="..\Product.Api\Product.Api\ProductService.Api.csproj" />
   </ItemGroup>
 
   <ItemGroup>

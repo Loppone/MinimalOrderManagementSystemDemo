@@ -9,10 +9,10 @@ global using BuildingBlocks.Exceptions;
 global using BuildingBlocks.Infrastructure;
 global using BuildingBlocks.Models;
 
-global using ProductService.Features.GetProductById;
-global using ProductService.Features.GetProducts;
-global using ProductService.Models;
-global using ProductService.Features.CreateProduct;
-global using ProductService.Infrastructure;
+global using ProductService.Api.Features.GetProductById;
+global using ProductService.Api.Features.GetProducts;
+global using ProductService.Api.Models;
+global using ProductService.Api.Features.CreateProduct;
+global using ProductService.Api.Infrastructure;
 
 global using TestProduct;

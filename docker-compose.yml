@@ -3,8 +3,9 @@ services:
   productdb:
     image: mcr.microsoft.com/mssql/server:2019-latest
 
-  gatewayapi:
-    image: ${DOCKER_REGISTRY-}gatewayapi
+  productservice.api:
+    image: ${DOCKER_REGISTRY-}productserviceapi
     build:
       context: .
-      dockerfile: GatewayApi/Dockerfile
+      dockerfile: Services/Product/Product.Api/Product.Api/Dockerfile
+

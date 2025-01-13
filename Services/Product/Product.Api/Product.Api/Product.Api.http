@@ -1,0 +1,39 @@
+# Docker Http
+@Product.Api_HostAddress = http://localhost:8010
+
+# Localhost Http
+# @Product.Api_HostAddress = http://localhost:5132
+
+# Localhost Https
+# @Product.Api_HostAddress = https://localhost:7060
+
+
+POST {{Product.Api_HostAddress}}/product
+Accept: application/json
+Content-Type: application/json
+{
+  "name": "Test abc",
+  "description": "descrizione 123",
+  "price": 10,
+  "categoryId": 100
+}
+###
+
+POST {{Product.Api_HostAddress}}/product/category
+Accept: application/json
+Content-Type: application/json
+{
+    "name": "Test123123"
+}
+###
+
+GET {{Product.Api_HostAddress}}/product/Categories
+Content-Type: application/json
+###
+
+GET  {{Product.Api_HostAddress}}/products?pageNumber=1&pageSize=3
+Content-Type: application/json
+###
+
+GET {{Product.Api_HostAddress}}/product/1
+Content-Type: application/json

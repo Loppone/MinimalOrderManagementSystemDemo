@@ -9,3 +9,4 @@ global using MediatR;
 
 global using BuildingBlocks.Abstractions;
 global using BuildingBlocks.Models;
+
