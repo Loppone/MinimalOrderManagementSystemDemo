@@ -19,6 +19,17 @@ Content-Type: application/json
 }
 ###
 
+PATCH {{Product.Api_HostAddress}}/product/1
+Accept: application/json
+Content-Type: application/json
+{
+  "id": 1,
+  "name": "new name!!!",
+  "description": "new description!!!",
+  "price": 1200
+}
+###
+
 POST {{Product.Api_HostAddress}}/product/category
 Accept: application/json
 Content-Type: application/json

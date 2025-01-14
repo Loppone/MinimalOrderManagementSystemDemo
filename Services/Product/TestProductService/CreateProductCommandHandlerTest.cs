@@ -13,7 +13,7 @@ public class CreateProductCommandHandlerTest
 
 
     [Fact]
-    public async Task Handle_ShouldAddProduct()
+    public async Task Handle_ShouldAddProduct_WhenDataIsValid()
     {
         _mockRepoCategory.Setup(x => x.GetByIdAsync(1))
             .ReturnsAsync(new Category { Id = 1, Name = "Category 1" });
