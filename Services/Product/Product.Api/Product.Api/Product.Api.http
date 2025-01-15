@@ -42,9 +42,12 @@ GET {{Product.Api_HostAddress}}/product/Categories
 Content-Type: application/json
 ###
 
-GET  {{Product.Api_HostAddress}}/products?pageNumber=1&pageSize=3
+GET  {{Product.Api_HostAddress}}/products?pageNumber=1&pageSize=100
 Content-Type: application/json
 ###
 
 GET {{Product.Api_HostAddress}}/product/1
 Content-Type: application/json
+###
+
+  DELETE {{Product.Api_HostAddress}}/Product/125

@@ -148,4 +148,30 @@ public class RepositoryTest
         result.Should().NotBeNull();
         result!.Id.Should().Be(1);
     }
+
+    [Fact]
+    public async Task DeleteAsync_ShouldRemoveProduct_WhenIdIsValid()
+    {
+        // Arrange
+        var context = new InMemoryDb<ProductDbContext>(opt => new ProductDbContext(opt));
+        var repositoryCommand = new CommandRepository<Product, ProductDbContext>(context.DbContext);
+        var repositoryQuery = new QueryRepository<Product, ProductDbContext>(context.DbContext);
+
+        // Inseriamo un prodotto per simularne l'esistenza
+        var product = new Product
+        {
+            Id = 1,
+            Name = "Product A",
+            Price = 100,
+            Category = new Category { Id = 1, Name = "Category A" }
+        };
+
+        await context.DbContext.Products.AddAsync(product);
+        await context.DbContext.SaveChangesAsync();
+
+        await repositoryCommand.DeleteAsync(1);
+
+        var result = await repositoryQuery.GetByIdAsync(1);
+        result.Should().BeNull();
+    }
 }

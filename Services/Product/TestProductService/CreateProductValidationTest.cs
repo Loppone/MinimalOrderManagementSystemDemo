@@ -1,10 +1,10 @@
 ﻿namespace TestProductService;
 
-public class CreateProductValidationTet
+public class CreateProductValidationTest
 {
     private readonly CreateProductValidation _sut;
 
-    public CreateProductValidationTet()
+    public CreateProductValidationTest()
     {
         _sut = new CreateProductValidation();
     }
