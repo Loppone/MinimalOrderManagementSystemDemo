@@ -20,6 +20,11 @@ public class ProductDbContext : DbContext
             .Property(p => p.Price)
             .HasPrecision(18, 2);
 
+        // Disabilito: preferisco passare 
+        //modelBuilder.Entity<Product>()
+        //    .Navigation(x=>x.Category)
+        //    .AutoInclude();
+
         modelBuilder.Entity<Product>()
             .HasOne(p => p.Category)
             .WithMany(c => c.Products)
