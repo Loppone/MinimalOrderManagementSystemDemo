@@ -47,7 +47,7 @@ public class RepositoryTest
     }
 
     [Fact]
-    public async Task GetAllPaginatedAsync_ShouldReturnListOfProducts_WhenDataFound()
+    public async Task GetAllPaginatedAsync_ShouldReturnPaginatedListOfProducts_WhenDataFound()
     {
         var context = new InMemoryDb<ProductDbContext>(opt => new ProductDbContext(opt));
 
@@ -66,6 +66,7 @@ public class RepositoryTest
         result.Items.Should().NotBeNull();
         result.Items.Should().NotBeNull();
         result.Items.Should().HaveCount(2);
+        result.Should().BeOfType<PaginatedResult<Product>>();
     }
 
     [Fact]

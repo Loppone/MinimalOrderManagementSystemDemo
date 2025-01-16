@@ -1,3 +1,5 @@
-﻿namespace ProductService.Api.Features.GetProducts;
+﻿using BuildingBlocks.Models;
 
-public record GetProductsQueryResult(IEnumerable<Product> Products);
+namespace ProductService.Api.Features.GetProducts;
+
+public record GetProductsQueryResult(PaginatedResult<Product> Products);

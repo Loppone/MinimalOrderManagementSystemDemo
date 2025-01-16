@@ -18,7 +18,7 @@ public class GetProductsEndpoint : ICarterModule
                 return ErrorHandlingHelper.HandleValidationErrors(result.Errors);
             }
 
-            return Results.Ok(result.Value.Products);
+            return Results.Ok(result.Value);
         })
         .WithName("GetProducts")
         .Produces<GetProductsQueryResult>(StatusCodes.Status200OK)

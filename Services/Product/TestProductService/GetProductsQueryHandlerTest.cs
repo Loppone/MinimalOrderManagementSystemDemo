@@ -62,7 +62,7 @@ public class GetProductsQueryHandlerTest
 
         var result = await sut.Handle(new GetProductsQueryRequest(), CancellationToken.None);
 
-        result.Value.Products.Should().BeEquivalentTo(expectedProducts);
+        result.Value.Products.Items.Should().BeEquivalentTo(expectedProducts);
     }
 
     [Fact]
@@ -88,6 +88,6 @@ public class GetProductsQueryHandlerTest
 
         var result = await sut.Handle(new GetProductsQueryRequest(), CancellationToken.None);
 
-        result.Value.Products.Should().BeEmpty();
+        result.Value.Products.Items.Should().BeEmpty();
     }
 }
