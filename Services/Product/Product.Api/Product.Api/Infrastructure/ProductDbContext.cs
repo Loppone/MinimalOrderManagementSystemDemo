@@ -43,7 +43,9 @@ public class ProductDbContext : DbContext
                 Name = "Hogwarts Legacy PS5",
                 Description = "Hogwarts Legacy è un gioco di ruolo d'azione open-world...",
                 Price = 35,
-                CategoryId = 1
+                CategoryId = 1,
+                ImageId = null,
+                ImageThumbnailId = null,
             },
             new Product
             {
@@ -51,7 +53,9 @@ public class ProductDbContext : DbContext
                 Name = "Console Playstation 5",
                 Description = "La PlayStation 5 è una console per videogiochi prodotta da Sony...",
                 Price = 400,
-                CategoryId = 1
+                CategoryId = 1,
+                ImageId = null,
+                ImageThumbnailId = null,
             },
             new Product
             {

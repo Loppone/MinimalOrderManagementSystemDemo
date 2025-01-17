@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Abstractions\IImageService.cs" />
     <Compile Remove="Helpers\ErrorHandlingHelper.cs" />
     <Compile Remove="Infrastructure\IRepository.cs" />
     <Compile Remove="Infrastructure\Repository.cs" />
