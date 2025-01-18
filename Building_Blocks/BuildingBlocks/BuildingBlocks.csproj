@@ -1,48 +1,48 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Abstractions\IImageService.cs" />
-    <Compile Remove="Helpers\ErrorHandlingHelper.cs" />
-    <Compile Remove="Infrastructure\IRepository.cs" />
-    <Compile Remove="Infrastructure\Repository.cs" />
-  </ItemGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<Compile Remove="Abstractions\IImageService.cs" />
+		<Compile Remove="Infrastructure\IRepository.cs" />
+		<Compile Remove="Infrastructure\Repository.cs" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Remove="C:\Users\shaol\.nuget\packages\microsoft.testplatform.testhost\17.12.0\build\netcoreapp3.1\x64\testhost.dll" />
-    <Content Remove="C:\Users\shaol\.nuget\packages\microsoft.testplatform.testhost\17.12.0\build\netcoreapp3.1\x64\testhost.exe" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Remove="C:\Users\shaol\.nuget\packages\microsoft.testplatform.testhost\17.12.0\build\netcoreapp3.1\x64\testhost.dll" />
+		<Content Remove="C:\Users\shaol\.nuget\packages\microsoft.testplatform.testhost\17.12.0\build\netcoreapp3.1\x64\testhost.exe" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Remove="C:\Users\shaol\.nuget\packages\xunit.runner.visualstudio\3.0.0\build\net6.0\xunit.abstractions.dll" />
-    <None Remove="C:\Users\shaol\.nuget\packages\xunit.runner.visualstudio\3.0.0\build\net6.0\xunit.runner.visualstudio.testadapter.dll" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="C:\Users\shaol\.nuget\packages\xunit.runner.visualstudio\3.0.0\build\net6.0\xunit.abstractions.dll" />
+		<None Remove="C:\Users\shaol\.nuget\packages\xunit.runner.visualstudio\3.0.0\build\net6.0\xunit.runner.visualstudio.testadapter.dll" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="FluentAssertions" Version="7.0.0" />
-    <PackageReference Include="FluentResults" Version="3.16.0" />
-    <PackageReference Include="FluentValidation" Version="11.11.0" />
-    <PackageReference Include="Mapster" Version="7.4.0" />
-    <PackageReference Include="MediatR" Version="12.4.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.11" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
-    <PackageReference Include="xunit" Version="2.9.3" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="3.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="FluentAssertions" Version="7.0.0" />
+		<PackageReference Include="FluentResults" Version="3.16.0" />
+		<PackageReference Include="FluentValidation" Version="11.11.0" />
+		<PackageReference Include="Mapster" Version="7.4.0" />
+		<PackageReference Include="MediatR" Version="12.4.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.11" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+		<PackageReference Include="xunit" Version="2.9.3" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="3.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
 </Project>

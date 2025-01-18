@@ -15,6 +15,7 @@ global using BuildingBlocks.Abstractions;
 global using BuildingBlocks.Behaviors;
 global using BuildingBlocks.Common.Errors;
 global using BuildingBlocks.Exceptions;
+global using BuildingBlocks.Helpers;
 global using BuildingBlocks.Infrastructure;
 global using BuildingBlocks.Messaging.Event;
 global using BuildingBlocks.Models;
