@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Messaging.Enums;
-
-namespace BuildingBlocks.Messaging.Event;
+﻿namespace BuildingBlocks.Messaging.Event;
 
 public record FileSavedEvent(
     int FileId,

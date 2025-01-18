@@ -1,7 +1,4 @@
-﻿using BuildingBlocks.Messaging.Event;
-using MassTransit;
-
-namespace ProductService.Api.Features.ImageSaved;
+﻿namespace ProductService.Api.Features.ImageSaved;
 
 public class ImageSavedConsumer(
     IQueryRepository<Product> rdRepo,

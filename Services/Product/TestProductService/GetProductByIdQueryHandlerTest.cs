@@ -1,6 +1,4 @@
-﻿using FluentResults;
-
-namespace TestProductService;
+﻿namespace TestProductService;
 
 public class GetProductByIdQueryHandlerTest
 {

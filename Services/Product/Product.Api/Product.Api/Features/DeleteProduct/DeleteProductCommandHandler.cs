@@ -1,6 +1,4 @@
-﻿
-
-namespace ProductService.Api.Features.DeleteProduct;
+﻿namespace ProductService.Api.Features.DeleteProduct;
 
 public class DeleteProductCommandHandler(
     ICommandRepository<Product> rwRepo,

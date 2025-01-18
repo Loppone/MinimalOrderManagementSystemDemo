@@ -10,11 +10,11 @@ global using FluentValidation;
 global using MassTransit;
 global using MediatR;
 
+global using BuildingBlocks.Abstractions;
 global using BuildingBlocks.Infrastructure;
 global using BuildingBlocks.Common.Errors;
 global using BuildingBlocks.Messaging.Enums;
 global using BuildingBlocks.Messaging.Event;
-global using BuildingBlocks.Messaging.MassTransit;
 
 global using ImageService.Api.Application.Handlers;
 global using ImageService.Api.Domain.Configuration;

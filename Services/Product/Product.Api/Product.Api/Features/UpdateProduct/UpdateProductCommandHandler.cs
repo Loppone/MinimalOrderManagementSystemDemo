@@ -1,5 +1,4 @@
-﻿
-namespace ProductService.Api.Features.UpdateProduct;
+﻿namespace ProductService.Api.Features.UpdateProduct;
 
 public class UpdateProductCommandHandler(
     ICommandRepository<Product> rwRepo,

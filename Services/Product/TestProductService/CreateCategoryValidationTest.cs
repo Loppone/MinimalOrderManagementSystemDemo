@@ -1,5 +1,4 @@
-﻿
-namespace TestProductService;
+﻿namespace TestProductService;
 
 public class CreateCategoryValidationTest
 {

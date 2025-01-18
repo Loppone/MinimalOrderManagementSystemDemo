@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace ImageService.Api.Features.SaveImage;
+﻿namespace ImageService.Api.Features.SaveImage;
 
 public class SaveImageEndpoint : ICarterModule
 {

@@ -1,6 +1,4 @@
-﻿using ProductService.Api.Application.Validation;
-
-namespace ProductService.Api.Features.CreateProduct;
+﻿namespace ProductService.Api.Features.CreateProduct;
 
 public class CreateProductValidation : ProductValidationUpsertBase<CreateProductCommandRequest>
 {

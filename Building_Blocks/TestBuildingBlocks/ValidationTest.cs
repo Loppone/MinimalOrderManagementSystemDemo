@@ -10,7 +10,7 @@ public class ValidationTest
         mockValidator.Setup(x => x.ValidateAsync(It.IsAny<ValidationContext<MockRequestClass>>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(new ValidationResult(new List<ValidationFailure>
             {
-                        new("Property", "Error message")
+                new("Property", "Error message")
             }));
 
         var mockRequest = new MockRequestClass();
@@ -21,7 +21,6 @@ public class ValidationTest
 
         var result = await behavior.Handle(mockRequest, mockNext.Object, CancellationToken.None);
 
-        // Assert
         Assert.False(result.IsSuccess);
         Assert.Single(result.Errors);
         mockNext.Verify(next => next(), Times.Never);

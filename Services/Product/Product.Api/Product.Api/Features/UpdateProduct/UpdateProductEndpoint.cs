@@ -1,6 +1,4 @@
-﻿using ProductService.Api.Features.UpdateProduct;
-
-namespace ProductService.Api.EndpointsProductEndpoints;
+﻿namespace ProductService.Api.EndpointsProductEndpoints;
 
 public class UpdateProductEndpoint : ICarterModule
 {

@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Abstractions;
-
-namespace ImageService.Api.Domain.Models;
+﻿namespace ImageService.Api.Domain.Models;
 
 public class Image : IEntity
 {

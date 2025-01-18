@@ -1,5 +1,3 @@
-using BuildingBlocks.Messaging.Enums;
-
 namespace TestImageService;
 
 public class SaveImageValidationTest

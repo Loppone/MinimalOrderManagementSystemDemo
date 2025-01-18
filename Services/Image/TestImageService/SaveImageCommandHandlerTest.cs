@@ -1,6 +1,4 @@
-﻿using BuildingBlocks.Messaging.Enums;
-
-namespace TestImageService;
+﻿namespace TestImageService;
 
 public class SaveImageCommandHandlerTest
 {

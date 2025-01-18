@@ -1,6 +1,4 @@
-﻿using ProductService.Api.Features.GetCategories;
-
-namespace TestProductService;
+﻿namespace TestProductService;
 
 public class GetCategoriesQueryHandlerTest
 {

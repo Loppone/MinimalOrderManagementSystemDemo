@@ -1,7 +1,4 @@
-﻿using BuildingBlocks.Common.Errors;
-using ProductService.Api.Features.UpdateProduct;
-
-namespace TestProductService;
+﻿namespace TestProductService;
 
 public class UpdateProductQueryHandlerTest
 {
