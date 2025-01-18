@@ -13,6 +13,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Services/Product/Product.Api/Product.Api/ProductService.Api.csproj", "Services/Product/Product.Api/Product.Api/"]
+COPY ["Building_Blocks/BuildingBlocks.Messaging/BuildingBlocks.Messaging.csproj", "Building_Blocks/BuildingBlocks.Messaging/"]
 COPY ["Building_Blocks/BuildingBlocks/BuildingBlocks.csproj", "Building_Blocks/BuildingBlocks/"]
 RUN dotnet restore "./Services/Product/Product.Api/Product.Api/ProductService.Api.csproj"
 COPY . .

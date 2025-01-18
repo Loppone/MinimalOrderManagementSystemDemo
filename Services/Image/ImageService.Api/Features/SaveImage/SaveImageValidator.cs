@@ -34,7 +34,7 @@ public class SaveImageValidator : AbstractValidator<SaveImageCommandRequest>
 
         try
         {
-            using var image = Image.Load(stream);
+            using var image = SixLabors.ImageSharp.Image.Load(stream);
 
             return image is not null;
         }

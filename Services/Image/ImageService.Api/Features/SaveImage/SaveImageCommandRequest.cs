@@ -1,11 +1,8 @@
-﻿using FluentResults;
-using MediatR;
-
-namespace ImageService.Api.Features.SaveImage;
+﻿namespace ImageService.Api.Features.SaveImage;
 
 public record SaveImageCommandRequest(
     EntityType Requester,
+    int EntityId,
     string FileName,
-    string FilePath,
     Stream ImageStream)
     : IRequest<Result<SaveImageCommandResult>>;

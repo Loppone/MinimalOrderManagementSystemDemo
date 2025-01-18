@@ -1,5 +1,24 @@
 services:
 
+  rabbitmq:
+    container_name: rabbitmq
+    ports:
+      - "15672:15672"  # Porta per l'interfaccia di gestione (management plugin)
+      - "5672:5672"    # Porta AMQP (protocollo di messaggistica)
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq  # Persistenza dei dati di RabbitMQ
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest  # Credenziali predefinite
+
+  imagedb:
+    container_name: imagedb
+    restart: always
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./db/:/root/db/
+
   productdb:
     container_name: productdb
     environment:
@@ -14,13 +33,37 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__Product=Server=productdb;Database=ProductDb;User Id=sa;Password=MyP455w@rd!;TrustServerCertificate=True;
+      - MessageBroker__Host=amqp://rabbitmq:5672  # Host di RabbitMQ in Docker
+      - MessageBroker__UserName=guest
+      - MessageBroker__Password=guest
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
     depends_on:
       - productdb
+      - rabbitmq
     ports:
       - "8010:8080"
       - "8020:8081"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+  imageservice.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - MessageBroker__Host=amqp://rabbitmq:5672  # Host di RabbitMQ in Docker
+      - MessageBroker__UserName=guest
+      - MessageBroker__Password=guest
+    ports:
+      - "8030:8080"
+      - "8032:8081"
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+volumes:
+  rabbitmq_data:

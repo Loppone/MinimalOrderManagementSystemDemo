@@ -1,6 +1,4 @@
-﻿using ProductService.Api.Application.Handlers;
-
-namespace ProductService.Api.EndpointsProductEndpoints;
+﻿namespace ProductService.Api.EndpointsProductEndpoints;
 
 public class CreateProductsEndpoint : ICarterModule
 {

@@ -1,13 +1,4 @@
-using FluentAssertions;
-using FluentValidation.TestHelper;
-using ImageService.Api.Domain.Enums;
-using ImageService.Api.Features.SaveImage;
-using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats.Png;
-using SixLabors.ImageSharp.Processing;
-using System.Drawing.Imaging;
-using Microsoft.AspNetCore.Routing;
+using BuildingBlocks.Messaging.Enums;
 
 namespace TestImageService;
 
@@ -24,7 +15,7 @@ public class SaveImageValidationTest
     [Fact]
     public async Task ShouldNotHaveErrorValidationError_WhenRequesterIsAValidEntityType()
     {
-        var request = new SaveImageCommandRequest(EntityType.Product, "Test.jpg", "c:\temp", null!);
+        var request = new SaveImageCommandRequest(EntityType.Product, 1, "Test.jpg", null!);
 
         var result = await _sut.TestValidateAsync(request);
 
@@ -34,7 +25,7 @@ public class SaveImageValidationTest
     [Fact]
     public async Task ShouldHaveError_WhenRequesterIsNotAValidEntityType()
     {
-        var request = new SaveImageCommandRequest((EntityType)999, "Test.jpg", "c:\temp", null!);
+        var request = new SaveImageCommandRequest((EntityType)999, 1, "Test.jpg", null!);
 
         var result = await _sut.TestValidateAsync(request);
 
@@ -44,7 +35,7 @@ public class SaveImageValidationTest
     [Fact]
     public async Task ShouldHaveError_WhenImageStreamIsNull()
     {
-        var request = new SaveImageCommandRequest(EntityType.Product, "Test.jpg", "c:\temp", null!);
+        var request = new SaveImageCommandRequest(EntityType.Product, 1, "Test.jpg", null!);
 
         var result = await _sut.TestValidateAsync(request);
 
@@ -54,7 +45,7 @@ public class SaveImageValidationTest
     [Fact]
     public async Task ShouldHaveError_WhenImageStreamIsEmpty()
     {
-        var request = new SaveImageCommandRequest(EntityType.Product, "Test.jpg", "c:\temp", new MemoryStream());
+        var request = new SaveImageCommandRequest(EntityType.Product, 1, "Test.jpg", new MemoryStream());
 
         var result = await _sut.TestValidateAsync(request);
 
@@ -85,7 +76,7 @@ public class SaveImageValidationTest
     [InlineData(null)]
     public async Task ShouldHaveError_WhenFileNameIsNullOrEmpty(string? fileName)
     {
-        var request = new SaveImageCommandRequest(EntityType.Product, fileName!, "c:\temp", new MemoryStream());
+        var request = new SaveImageCommandRequest(EntityType.Product, 1, fileName!, new MemoryStream());
 
         var result = await _sut.TestValidateAsync(request);
 
@@ -95,7 +86,7 @@ public class SaveImageValidationTest
     [Fact]
     public void ShouldHaveError_WhenFileNameHasInvalidExtension()
     {
-        var request = new SaveImageCommandRequest(EntityType.Product, "file.txt", "c:\temp", null!);
+        var request = new SaveImageCommandRequest(EntityType.Product, 1, "file.txt", null!);
 
         var result = _sut.TestValidate(request);
 
@@ -105,7 +96,7 @@ public class SaveImageValidationTest
     [Fact]
     public void ShouldHaveError_WhenFileNameHasInvalidCharacters()
     {
-        var request = new SaveImageCommandRequest(EntityType.Product, "file?.txt", "c:\temp", null!);
+        var request = new SaveImageCommandRequest(EntityType.Product, 1, "file?.txt", null!);
 
         var result = _sut.TestValidate(request);
 

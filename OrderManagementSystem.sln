@@ -29,6 +29,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ImageService", "ImageServic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestImageService", "Services\Image\TestImageService\TestImageService.csproj", "{7D77702D-DF66-45E6-9301-220966A44F6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Messaging", "Building_Blocks\BuildingBlocks.Messaging\BuildingBlocks.Messaging.csproj", "{2E331BE6-7824-4DA4-A3E8-6C236AA9F4AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlock.Messaging.Test", "Building_Blocks\BuildingBlock.Messaging.Test\BuildingBlock.Messaging.Test.csproj", "{28987654-9597-4C9B-A0E7-66D9D4562B6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +75,14 @@ Global
 		{7D77702D-DF66-45E6-9301-220966A44F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D77702D-DF66-45E6-9301-220966A44F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D77702D-DF66-45E6-9301-220966A44F6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E331BE6-7824-4DA4-A3E8-6C236AA9F4AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E331BE6-7824-4DA4-A3E8-6C236AA9F4AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E331BE6-7824-4DA4-A3E8-6C236AA9F4AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E331BE6-7824-4DA4-A3E8-6C236AA9F4AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28987654-9597-4C9B-A0E7-66D9D4562B6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28987654-9597-4C9B-A0E7-66D9D4562B6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28987654-9597-4C9B-A0E7-66D9D4562B6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28987654-9597-4C9B-A0E7-66D9D4562B6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,5 +96,7 @@ Global
 		{445BD327-4164-4348-8809-698C0959C21F} = {072D01D8-60A0-45DA-A027-61E0742EB345}
 		{072D01D8-60A0-45DA-A027-61E0742EB345} = {89355A44-F121-4710-9AD2-78D3E5078762}
 		{7D77702D-DF66-45E6-9301-220966A44F6B} = {072D01D8-60A0-45DA-A027-61E0742EB345}
+		{2E331BE6-7824-4DA4-A3E8-6C236AA9F4AD} = {56A068E5-7E16-402F-BA4C-257FE1186D6D}
+		{28987654-9597-4C9B-A0E7-66D9D4562B6F} = {56A068E5-7E16-402F-BA4C-257FE1186D6D}
 	EndGlobalSection
 EndGlobal

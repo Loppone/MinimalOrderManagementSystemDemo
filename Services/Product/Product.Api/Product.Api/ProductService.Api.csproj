@@ -11,10 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Features\AddImage\**" />
-    <Content Remove="Features\AddImage\**" />
-    <EmbeddedResource Remove="Features\AddImage\**" />
-    <None Remove="Features\AddImage\**" />
+    <Compile Remove="Features\ImageSaved\AddImageHandler.cs" />
+    <Compile Remove="Features\ImageSaved\AddImageRequest.cs" />
+    <Compile Remove="Features\ImageSaved\FakeImageService.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Building_Blocks\BuildingBlocks.Messaging\BuildingBlocks.Messaging.csproj" />
     <ProjectReference Include="..\..\..\..\Building_Blocks\BuildingBlocks\BuildingBlocks.csproj" />
   </ItemGroup>
 

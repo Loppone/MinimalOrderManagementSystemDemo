@@ -1,5 +1,11 @@
 services:
 
+  rabbitmq:
+    image: rabbitmq:management
+  
+  imagedb:
+    image: keinos/sqlite3
+
   productdb:
     image: mcr.microsoft.com/mssql/server:2019-latest
 
@@ -8,4 +14,10 @@ services:
     build:
       context: .
       dockerfile: Services/Product/Product.Api/Product.Api/Dockerfile
+
+  imageservice.api:
+    image: ${DOCKER_REGISTRY-}imageserviceapi
+    build:
+      context: .
+      dockerfile: Services/Image/ImageService.Api/Dockerfile
 

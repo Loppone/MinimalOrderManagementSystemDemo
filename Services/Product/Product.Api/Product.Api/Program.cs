@@ -1,4 +1,5 @@
-using ProductService.Api.Application.Handlers;
+using MassTransit;
+using ProductService.Api.Features.ImageSaved;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,28 @@ builder.Services.AddMediatR(cfg =>
 
 builder.Services.AddValidatorsFromAssembly(typeof(CreateProductValidation).Assembly);
 
+//builder.Services.AddMessageBroker(builder.Configuration);
+
+//builder.Services.AddMessageBroker(builder.Configuration);
+builder.Services.AddMassTransit(bus =>
+{
+    bus.AddConsumer<ImageSavedConsumer>();
+
+    bus.SetKebabCaseEndpointNameFormatter();
+    bus.UsingRabbitMq((ctx, cfg) =>
+    {
+        cfg.Host(new Uri(builder.Configuration["MessageBroker:Host"]!), host =>
+        {
+            host.Username(builder.Configuration["MessageBroker:UserName"]!);
+            host.Password(builder.Configuration["MessageBroker:Password"]!);
+        });
+
+        cfg.ConfigureEndpoints(ctx);
+    });
+});
+
+
+
 // Exception Handling
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
@@ -32,6 +55,16 @@ builder.Services.AddScoped<ICommandRepository<Product>, CommandRepository<Produc
 builder.Services.AddScoped<IQueryRepository<Category>, QueryRepository<Category, ProductDbContext>>();
 builder.Services.AddScoped<ICommandRepository<Category>, CommandRepository<Category, ProductDbContext>>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin", policy =>
+    {
+        policy.WithOrigins("http://localhost:8030") // URL di Swagger
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -40,6 +73,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     await app.Seed();
 }
+
+// Abilita il middleware CORS
+app.UseCors("AllowSpecificOrigin");
+
 
 app.UseHttpsRedirection();
 

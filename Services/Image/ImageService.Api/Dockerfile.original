@@ -13,8 +13,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Services/Image/ImageService.Api/ImageService.Api.csproj", "Services/Image/ImageService.Api/"]
-COPY ["Building_Blocks/BuildingBlocks.Messaging/BuildingBlocks.Messaging.csproj", "Building_Blocks/BuildingBlocks.Messaging/"]
-COPY ["Building_Blocks/BuildingBlocks/BuildingBlocks.csproj", "Building_Blocks/BuildingBlocks/"]
 RUN dotnet restore "./Services/Image/ImageService.Api/ImageService.Api.csproj"
 COPY . .
 WORKDIR "/src/Services/Image/ImageService.Api"

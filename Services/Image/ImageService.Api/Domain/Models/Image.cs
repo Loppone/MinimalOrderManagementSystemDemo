@@ -1,6 +1,8 @@
-﻿namespace ImageService.Api.Domain.Models;
+﻿using BuildingBlocks.Abstractions;
 
-public class Image
+namespace ImageService.Api.Domain.Models;
+
+public class Image : IEntity
 {
     public int Id { get; set; }
     public string FileName { get; set; } = string.Empty;

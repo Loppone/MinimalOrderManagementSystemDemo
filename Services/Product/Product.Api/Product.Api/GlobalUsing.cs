@@ -15,6 +15,7 @@ global using BuildingBlocks.Behaviors;
 global using BuildingBlocks.Common.Errors;
 global using BuildingBlocks.Exceptions;
 global using BuildingBlocks.Infrastructure;
+global using BuildingBlocks.Messaging.MassTransit;
 
 global using ProductService.Api.Application.Validation;
 global using ProductService.Api.Application.Handlers;
