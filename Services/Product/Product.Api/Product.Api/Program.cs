@@ -1,4 +1,5 @@
 using MassTransit;
+using MassTransit.Transports.Fabric;
 using ProductService.Api.Features.ImageSaved;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,6 +38,17 @@ builder.Services.AddMassTransit(bus =>
         {
             host.Username(builder.Configuration["MessageBroker:UserName"]!);
             host.Password(builder.Configuration["MessageBroker:Password"]!);
+        });
+
+        cfg.ReceiveEndpoint("ProductImage", ep =>
+        {
+            ep.ConfigureConsumer<ImageSavedConsumer>(ctx);
+
+            ep.Bind("exc.imageservice", exc =>
+            {
+                exc.RoutingKey = "PRODUCT";
+                exc.ExchangeType = "topic";
+            });
         });
 
         cfg.ConfigureEndpoints(ctx);

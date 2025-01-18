@@ -32,6 +32,13 @@ builder.Services.AddMassTransit(bus =>
                 host.Password(builder.Configuration["MessageBroker:Password"]!);
             });
 
+            //cfg.Publish<FileSavedEvent>(p =>
+            //{
+            //    p.ExchangeType = "topic";
+            //    p.Durable = true;
+            //    p.AutoDelete = false;
+            //});
+
             cfg.ConfigureEndpoints(ctx);
         });
     });
