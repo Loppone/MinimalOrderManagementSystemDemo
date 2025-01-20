@@ -1,5 +1,5 @@
-using BuildingBlocks.Behaviors;
-using ImageService.Api.Features.SaveImage;
+using FluentAssertions.Common;
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.ObjectModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,32 +18,26 @@ builder.Services.AddMediatR(cfg =>
     cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
 });
 
+//builder.Services.AddValidatorsFromAssembly(typeof(SaveImageValidator).Assembly);
+
 builder.Services.AddCarter();
 
 //builder.Services.AddMessageBroker(builder.Configuration);
-builder.Services.AddMassTransit(bus =>
+builder.Services.AddMassTransit(config =>
+{
+    config.SetKebabCaseEndpointNameFormatter();
+
+    config.UsingRabbitMq((ctx, cfg) =>
     {
-        bus.SetKebabCaseEndpointNameFormatter();
-        bus.UsingRabbitMq((ctx, cfg) =>
+        cfg.Host(new Uri(builder.Configuration["MessageBroker:Host"]!), host =>
         {
-            cfg.Host(new Uri(builder.Configuration["MessageBroker:Host"]!), host =>
-            {
-                host.Username(builder.Configuration["MessageBroker:UserName"]!);
-                host.Password(builder.Configuration["MessageBroker:Password"]!);
-            });
-
-            //cfg.Publish<FileSavedEvent>(p =>
-            //{
-            //    p.ExchangeType = "topic";
-            //    p.Durable = true;
-            //    p.AutoDelete = false;
-            //});
-
-            cfg.ConfigureEndpoints(ctx);
+            host.Username(builder.Configuration["MessageBroker:UserName"]!);
+            host.Password(builder.Configuration["MessageBroker:Password"]!);
         });
+
+        cfg.ConfigureEndpoints(ctx);
     });
-
-
+});
 
 
 // Dependency Injection

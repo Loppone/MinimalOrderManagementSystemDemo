@@ -1,9 +1,15 @@
 ﻿namespace BuildingBlocks.Messaging.MassTransit;
 
+/// <summary>
+/// La configuraione per un consumer è attualmente troppo complessa e va rivista
+/// la struttura. Un semplice extension method non è sufficiente.
+/// </summary>
+[Obsolete]
 public static class Extentions
 {
-    public static IServiceCollection AddMessageBroker
-        (this IServiceCollection services, IConfiguration configuration, Assembly? assembly = null)
+    public static IServiceCollection AddMessageBroker(
+        this IServiceCollection services, 
+        IConfiguration configuration, Assembly? assembly = null)
     {
         services.AddMassTransit(config =>
         {

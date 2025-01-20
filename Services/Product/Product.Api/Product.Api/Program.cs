@@ -1,6 +1,4 @@
-using MassTransit;
-using MassTransit.Transports.Fabric;
-using ProductService.Api.Features.ImageSaved;
+using ProductService.Api.Messaging.ImageSaved;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,14 +22,12 @@ builder.Services.AddMediatR(cfg =>
 
 builder.Services.AddValidatorsFromAssembly(typeof(CreateProductValidation).Assembly);
 
-//builder.Services.AddMessageBroker(builder.Configuration);
-
-//builder.Services.AddMessageBroker(builder.Configuration);
 builder.Services.AddMassTransit(bus =>
 {
+    bus.SetKebabCaseEndpointNameFormatter();
+
     bus.AddConsumer<ImageSavedConsumer>();
 
-    bus.SetKebabCaseEndpointNameFormatter();
     bus.UsingRabbitMq((ctx, cfg) =>
     {
         cfg.Host(new Uri(builder.Configuration["MessageBroker:Host"]!), host =>
@@ -40,22 +36,9 @@ builder.Services.AddMassTransit(bus =>
             host.Password(builder.Configuration["MessageBroker:Password"]!);
         });
 
-        cfg.ReceiveEndpoint("ProductImage", ep =>
-        {
-            ep.ConfigureConsumer<ImageSavedConsumer>(ctx);
-
-            ep.Bind("exc.imageservice", exc =>
-            {
-                exc.RoutingKey = "PRODUCT";
-                exc.ExchangeType = "topic";
-            });
-        });
-
         cfg.ConfigureEndpoints(ctx);
     });
 });
-
-
 
 // Exception Handling
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();

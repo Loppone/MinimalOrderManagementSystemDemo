@@ -11,13 +11,15 @@ services:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest  # Credenziali predefinite
 
-  imagedb:
-    container_name: imagedb
-    restart: always
-    stdin_open: true
-    tty: true
-    volumes:
-      - ./db/:/root/db/
+  # imagedb:
+  #   container_name: imagedb
+  #   environment:
+  #     - ConnectionStrings__Image=Data Source=/root/db/Images.db
+  #   restart: always
+  #   stdin_open: true
+  #   tty: true
+  #   volumes:
+  #     - ./db/:/root/db/
 
   productdb:
     container_name: productdb
@@ -56,14 +58,20 @@ services:
       - MessageBroker__Host=amqp://rabbitmq:5672  # Host di RabbitMQ in Docker
       - MessageBroker__UserName=guest
       - MessageBroker__Password=guest
+      - ConnectionStrings__Image=Data Source=/data/Images.db
+      - ImageStorage__PathFolder=/app/images
     ports:
       - "8030:8080"
       - "8032:8081"
     depends_on:
       - rabbitmq
     volumes:
+      - ./images:/app/images
+      - ./data:/data
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 
 volumes:
   rabbitmq_data:
+  data:
+  images:

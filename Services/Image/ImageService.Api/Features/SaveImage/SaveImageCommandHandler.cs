@@ -25,7 +25,7 @@ public class SaveImageCommandHandler(
         await request.ImageStream.CopyToAsync(fileStream, cancellationToken);
 
         // Salva il file su DB
-        var fileDb = new ImageService.Api.Domain.Models.Image
+        var fileDb = new Image
         {
             FileName=request.FileName,
             Path = imagePath,
@@ -36,6 +36,7 @@ public class SaveImageCommandHandler(
 
         await rwRepo.SaveAsync();
 
+        var requester = request.Requester.ToRoutingKey();
         // Messaggio da dispatchare
         await publishEndpoint.Publish(new FileSavedEvent(
             fileId,
@@ -43,6 +44,10 @@ public class SaveImageCommandHandler(
             request.Requester,
             DateTime.UtcNow
             ),
+            ctx =>
+            {
+                ctx.SetRoutingKey(requester);
+            },
             cancellationToken);
 
         return Result.Ok(new SaveImageCommandResult());

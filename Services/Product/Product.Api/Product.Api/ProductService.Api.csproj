@@ -12,9 +12,9 @@
 
   <ItemGroup>
     <Compile Remove="Application\Handlers\ErrorHandlingHelper.cs" />
-    <Compile Remove="Features\ImageSaved\AddImageHandler.cs" />
-    <Compile Remove="Features\ImageSaved\AddImageRequest.cs" />
-    <Compile Remove="Features\ImageSaved\FakeImageService.cs" />
+    <Compile Remove="Messaging\ImageSaved\AddImageHandler.cs" />
+    <Compile Remove="Messaging\ImageSaved\AddImageRequest.cs" />
+    <Compile Remove="Messaging\ImageSaved\FakeImageService.cs" />
   </ItemGroup>
 
   <ItemGroup>

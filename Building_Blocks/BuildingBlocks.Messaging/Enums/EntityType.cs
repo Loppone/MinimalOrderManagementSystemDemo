@@ -2,5 +2,6 @@
 
 public enum EntityType
 {
-    Product = 1
+    Product = 1,
+    User
 }
